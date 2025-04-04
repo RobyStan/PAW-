@@ -1,0 +1,29 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Ultimele știri</h1>
+
+    @foreach (var stire in Model.Stiri)
+    {
+        <div class="card mb-3 shadow-sm">
+            <div class="card-body">
+                <h3 class="card-title">
+                    <a asp-page="Stire" asp-route-stireId="@stire.Id" class="text-decoration-none">
+                        @stire.Titlu
+                    </a>
+
+                </h3>
+                <p class="card-text">@stire.Lead</p>
+                <p class="text-muted">
+                    Adăugat de <strong>@stire.Autor</strong> la data de
+                    <strong>@stire.Data.ToString("dd MMMM yyyy")</strong>
+                    în categoria <strong>@stire.Categorie?.Nume</strong>
+                </p>
+            </div>
+        </div>
+    }
+</div>

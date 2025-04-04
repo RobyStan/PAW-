@@ -1,0 +1,30 @@
+﻿@page "{stireId:int}"
+@model StireModel
+@{
+    ViewData["Title"] = Model.Stire?.Titlu ?? "Știre inexistentă";
+}
+
+<div class="container mt-4">
+    @if (Model.Stire != null)
+    {
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h1 class="card-title">@Model.Stire.Titlu</h1>
+                <p class="card-text">@Model.Stire.Lead</p>
+                <p class="text-muted">
+                    Adăugat de <strong>@Model.Stire.Autor</strong> la data de
+                    <strong>@Model.Stire.Data.ToString("dd MMMM yyyy")</strong>
+                    în categoria <strong>@Model.Stire.Categorie?.Nume</strong>
+                </p>
+                <hr>
+                <p>@Model.Stire.Continut</p>
+                <a asp-page="Index" class="btn btn-primary mt-3">Înapoi la știri</a>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-danger">Această știre nu există!</div>
+        <a asp-page="Index" class="btn btn-secondary">Înapoi la știri</a>
+    }
+</div>
